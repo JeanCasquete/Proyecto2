@@ -1,61 +1,49 @@
 <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-    <h2 class="text-gray-800 text-2xl font-bold mb-4">Gestionar Biblioteca de Animes</h2>
-    <form class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
-      <input type="text" placeholder="Título del Anime" class="col-span-1 sm:col-span-3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      
-      <input type="text" placeholder="Género" class="col-span-1 sm:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      
-      <input type="date" class="col-span-1 sm:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      
-      <input type="file" class="col-span-1 sm:col-span-3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
-      
-      <button type="submit" class="col-span-1 sm:col-span-1 bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300">Guardar</button>
-    </form>
-  </div>
-  
-  
+  <h2 class="text-gray-800 text-2xl font-bold mb-4">Gestionar Biblioteca de Animes</h2>
+  <form [formGroup]="animeForm" (ngSubmit)="onSubmit()" class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center">
+    <input formControlName="titulo" type="text" placeholder="Título del Anime" class="col-span-1 sm:col-span-3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
-  <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
-    <h2 class="text-2xl font-semibold mb-4">Lista de Animes</h2>
-    <table class="min-w-full bg-white">
-      <thead>
-        <tr>
-          <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Imagen</th>
-          <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Título</th>
-          <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Género</th>
-          <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Fecha de Lanzamiento</th>
-          <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Ejemplo de Anime 1 -->
-        <tr class="bg-gray-50">
-          <td class="px-4 py-2">
-            <img src="anime1.jpg" alt="Anime 1" class="h-16 w-16 object-cover rounded-lg">
-          </td>
-          <td class="px-4 py-2">Naruto Shippuden</td>
-          <td class="px-4 py-2">Acción, Aventura</td>
-          <td class="px-4 py-2">15 de Febrero, 2007</td>
-          <td class="px-4 py-2">
-            <button class="text-blue-500 hover:text-blue-700 mr-2">Editar</button>
-            <button class="text-red-500 hover:text-red-700">Eliminar</button>
-          </td>
-        </tr>
-        <!-- Ejemplo de Anime 2 -->
-        <tr class="bg-white">
-          <td class="px-4 py-2">
-            <img src="anime2.jpg" alt="Anime 2" class="h-16 w-16 object-cover rounded-lg">
-          </td>
-          <td class="px-4 py-2">Attack on Titan</td>
-          <td class="px-4 py-2">Acción, Drama</td>
-          <td class="px-4 py-2">7 de Abril, 2013</td>
-          <td class="px-4 py-2">
-            <button class="text-blue-500 hover:text-blue-700 mr-2">Editar</button>
-            <button class="text-red-500 hover:text-red-700">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-  
+    <input formControlName="imagen" type="text" placeholder="Imagen URL" class="col-span-1 sm:col-span-3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <input formControlName="ano" type="number" placeholder="Año" class="col-span-1 sm:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <input formControlName="capitulos" type="number" placeholder="Número de Capítulos" class="col-span-1 sm:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <input formControlName="generoIds" type="text" placeholder="Géneros (ID separados por coma)" class="col-span-1 sm:col-span-3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <button type="submit" class="col-span-1 sm:col-span-1 bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300">Guardar</button>
+  </form>
+</div>
+
+<div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+  <h2 class="text-2xl font-semibold mb-4">Lista de Animes</h2>
+  <table class="min-w-full bg-white">
+    <thead>
+      <tr>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Imagen</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Título</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Año</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Capítulos</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Géneros</th>
+        <th class="px-4 py-2 text-left text-sm font-medium text-gray-900">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let anime of Animes" class="bg-gray-50">
+        <td class="px-4 py-2">
+          <img [src]="anime.imagen" alt="{{ anime.titulo }}" class="h-16 w-16 object-cover rounded-lg">
+        </td>
+        <td class="px-4 py-2">{{ anime.titulo }}</td>
+        <td class="px-4 py-2">{{ anime.ano }}</td>
+        <td class="px-4 py-2">{{ anime.capitulos }}</td>
+        <td class="px-4 py-2">
+          <span *ngFor="let genero of anime.generos">{{ genero.genero.nombre }} </span>
+        </td>
+        <td class="px-4 py-2">
+          <button (click)="editAnime(anime)" class="text-blue-500 hover:text-blue-700 mr-2">Editar</button>
+          <button (click)="deleteAnime(anime.id)" class="text-red-500 hover:text-red-700">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
